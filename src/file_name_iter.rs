@@ -2,9 +2,9 @@ use rand::distributions::Alphanumeric;
 use rand::prelude::*;
 
 #[derive(Debug)]
-struct FileNameIter {
-    size_range: (usize, usize),
-    extensions: Vec<String>,
+pub struct FileNameIter {
+    pub size_range: (usize, usize),
+    pub extensions: Vec<String>,
 }
 
 impl Default for FileNameIter {
@@ -60,11 +60,11 @@ mod test {
         let rng = rand::thread_rng();
         let sampler = FileNameIter::default();
         let matcher = Regex::new(r"\.[a-zA-Z0-9]*$").unwrap();
-        let test_filename: Vec<String> =  sampler
-            .sample_iter(rng)
-            .take(10)
-            .collect();
-        
-        test_filename.iter().for_each(|filename| assert!(matcher.is_match(filename)));
+        let test_filename: Vec<String> = sampler.sample_iter(rng).take(10).collect();
+        dbg!(&test_filename);
+
+        test_filename
+            .iter()
+            .for_each(|filename| assert!(matcher.is_match(filename)));
     }
 }
