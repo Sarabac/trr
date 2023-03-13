@@ -1,5 +1,4 @@
-
-use anyhow::{Context, Result, Ok};
+use anyhow::{Context, Ok, Result};
 use clap::{Args, Parser, Subcommand, ValueEnum};
 
 use crate::file_generate::FileGenerator;
